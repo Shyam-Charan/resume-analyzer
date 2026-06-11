@@ -1,0 +1,4 @@
+Name: Sample Candidate
+Skills: Python, Machine Learning, NLP
+Experience: 2 years software development
+Education: B.Tech Computer Science
