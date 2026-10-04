@@ -1,4 +1,2 @@
-spacy
-nltk
 pdfplumber
-scikit-learn
+pytest

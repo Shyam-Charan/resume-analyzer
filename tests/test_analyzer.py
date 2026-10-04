@@ -1,6 +1,8 @@
 import sys
 from pathlib import Path
 
+import pytest
+
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 
 from analyzer import analyze, extract_skills
@@ -23,5 +25,5 @@ def test_analysis_reports_matches_and_missing():
 
 
 def test_cosine_similarity_bounds():
-    assert cosine_similarity("python sql", "python sql") == 1.0
+    assert cosine_similarity("python sql", "python sql") == pytest.approx(1.0)
     assert cosine_similarity("python", "java") == 0.0
