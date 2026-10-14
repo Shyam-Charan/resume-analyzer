@@ -27,3 +27,26 @@ def test_analysis_reports_matches_and_missing():
 def test_cosine_similarity_bounds():
     assert cosine_similarity("python sql", "python sql") == pytest.approx(1.0)
     assert cosine_similarity("python", "java") == 0.0
+
+
+from matcher import idf, tfidf_similarity, rank_resumes
+
+
+def test_idf_downweights_common_words():
+    weights = idf(["python sql", "python docker", "python spark"])
+    assert weights["python"] < weights["sql"]
+
+
+def test_tfidf_similarity_bounds():
+    assert tfidf_similarity("python sql", "python sql") == pytest.approx(1.0)
+    assert tfidf_similarity("python", "java") == 0.0
+
+
+def test_rank_resumes_puts_best_match_first():
+    resumes = {
+        "a.txt": "python pandas machine learning projects",
+        "b.txt": "java spring hibernate backend services",
+    }
+    ranking = rank_resumes(resumes, "looking for python and machine learning")
+    assert ranking[0][0] == "a.txt"
+    assert ranking[0][1] > ranking[1][1]

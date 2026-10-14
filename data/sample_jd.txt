@@ -1,0 +1,3 @@
+Data Analyst
+Skills: Python, SQL, pandas, scikit-learn, machine learning, git, docker.
+Projects: build data pipelines and models.
