@@ -18,22 +18,29 @@ def normalize_text(text: str) -> str:
     return re.sub(r"\s+", " ", text).strip()
 
 
+SECTION_HEADINGS = {
+    "summary": r"summary|profile|objective",
+    "skills": r"technical skills|skills|technologies",
+    "experience": r"experience|work experience|internship",
+    "education": r"education|academic background",
+    "projects": r"projects|academic projects|personal projects",
+    "achievements": r"achievements|awards|honors",
+}
+
+
+def detect_heading(line: str) -> str | None:
+    """Return the section key if ``line`` is a section heading, else None."""
+    compact = re.sub(r"[^a-z ]", "", line.lower()).strip()
+    return next((key for key, pattern in SECTION_HEADINGS.items()
+                 if re.fullmatch(pattern, compact)), None)
+
+
 def extract_sections(text: str) -> dict[str, str]:
-    headings = {
-        "summary": r"summary|profile|objective",
-        "skills": r"technical skills|skills|technologies",
-        "experience": r"experience|work experience|internship",
-        "education": r"education|academic background",
-        "projects": r"projects|academic projects|personal projects",
-        "achievements": r"achievements|awards|honors",
-    }
     lines = [line.strip() for line in text.splitlines() if line.strip()]
-    result = {key: "" for key in headings}
+    result = {key: "" for key in SECTION_HEADINGS}
     current = None
     for line in lines:
-        compact = re.sub(r"[^a-z ]", "", line.lower()).strip()
-        matched = next((key for key, pattern in headings.items()
-                        if re.fullmatch(pattern, compact)), None)
+        matched = detect_heading(line)
         if matched:
             current = matched
             continue

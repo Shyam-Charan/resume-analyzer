@@ -1,0 +1,13 @@
+AI Engineer
+
+Responsibilities
+- Design and build RAG pipelines with embeddings, vector stores and document ingestion
+- Build multi-agent workflows using LangGraph or similar orchestration frameworks
+- Validate model outputs and add evaluation checks, baselines and quality metrics
+- Deploy and operate LLM applications in production with monitoring and cost tracking
+- Expose services through REST APIs built with FastAPI
+- Communicate technical results to business stakeholders
+
+Requirements
+- Strong Python, data structures and algorithms
+- Experience with Git, Docker and a cloud platform such as AWS, Azure or GCP
