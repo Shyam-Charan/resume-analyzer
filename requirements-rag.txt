@@ -1,0 +1,4 @@
+# Optional extras for --semantic (real embeddings) and --explain (LLM explanation)
+-r requirements.txt
+fastembed
+anthropic
